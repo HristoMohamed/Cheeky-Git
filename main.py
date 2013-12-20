@@ -5,17 +5,24 @@ import math
 import os
 import smtplib
 from Daemon import Daemon
-
+import scapy
 
 
 class ValidWiFiMachine():
 
-    WIRELESS_SYS = "/sys/class/net/NETDEVICE/wireless"
+    WIRELESS_SYS = "/sys/class/net/"
     WPA_SUPPLICANT = "/var/run/wpa_supplicant.pid"
     has_interface = 0
     has_wpa_supplicant = 0
     installed_wireless_stack = 0
-    
+        
+    def find_if_wireless_device_exists(self):
+        all_network_devices = os.walk(WIRELESS_SYS).next()[1]
+        for network_device in all_network_devices:
+            if os.path.exists(WIRELESS_SYS+network_device+"\wireless"
+                self.has_interface = 1
+                return
+
     def search_for_wireless_interface(self):
         if os.path.exists(WIRELESS_SYS):
             self.has_interface = 1  
@@ -25,9 +32,33 @@ class ValidWiFiMachine():
             self.has_wpa_supplicant = 1
 
 class TestWiFiConnection():
+    
+    WIRELESS_SYS = "/sys/class/net/"    
+    
+
+    wireless_interfaces = []
     interface_name = 0
     list_of_networks = 0
+    number_of_wireless_devices = 0
+    available_points = 0
+    set_interface(self):
     
+    def find_wireless_interfaces(self):
+        all_network_devices = os.walk(WIRELESS_SYS).next()[1]
+        for network_device in all_network_devices:
+            if os.path.exists(WIRELESS_SYS+network_device+"\wireless"):
+                self.wireless_interfaces.append(network_device)
+                self.number_of_wireless_devices = self.number_of_wireless_devices +1
+    
+    def set_interface_name(self):
+        self.interface_name = self.wireless_devices[self.number_of_wireless_devices]
+        self.number_of_wireless_devices = self.number_of_wireless_devices -1    
+    
+    def prepare_wireless_device_for_monitoring_mode(self):
+                
+ 
+#    get_list_of_all_available_points(self):
+         
          
 
 #TODO think of a better name dammit
