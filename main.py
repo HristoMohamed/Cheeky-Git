@@ -24,6 +24,10 @@ class ValidWiFiMachine():
         if os.path.exists(WPA_SUPPLICANT):
             self.has_wpa_supplicant = 1
 
+class TestWiFiConnection():
+    interface_name = 0
+    list_of_networks = 0
+    
          
 
 #TODO think of a better name dammit
